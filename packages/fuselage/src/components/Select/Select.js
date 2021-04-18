@@ -2,14 +2,7 @@ import {
   useMutableCallback,
   useResizeObserver,
 } from '@rocket.chat/fuselage-hooks';
-import React, {
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  forwardRef,
-  useMemo,
-} from 'react';
+import React, { useState, useRef, useEffect, forwardRef, useMemo } from 'react';
 
 import { PositionAnimated, Box, AnimatedVisibility } from '../Box';
 import { Icon } from '../Icon';
@@ -45,6 +38,7 @@ const useDidUpdate = (func, deps = []) => {
       fn();
     }
     didMount.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 };
 
@@ -113,12 +107,19 @@ export const Select = ({
   const visibleText =
     (filter === undefined || visible === AnimatedVisibility.HIDDEN) &&
     (valueLabel || placeholder || typeof placeholder === 'string');
+
+  const handleClick = useMutableCallback(() => {
+    visible === AnimatedVisibility.HIDDEN ? show() : hide();
+  });
+
   return (
     <Box
       rcx-select
       disabled={disabled}
       ref={containerRef}
-      onClick={useMutableCallback(() => ref.current.focus() & show())}
+      tabIndex='0'
+      onClick={handleClick}
+      onBlur={hide}
       className={useMemo(() => [error && 'invalid', disabled && 'disabled'], [
         error,
         disabled,
@@ -148,8 +149,6 @@ export const Select = ({
           filter={filter}
           ref={ref}
           aria-haspopup='listbox'
-          onClick={show}
-          onBlur={hide}
           onKeyUp={handleKeyUp}
           onKeyDown={handleKeyDown}
         />
@@ -183,21 +182,22 @@ export const Select = ({
 
 export const SelectFiltered = ({ options, placeholder, ...props }) => {
   const [filter, setFilter] = useState('');
-  const anchor = useCallback(
-    React.forwardRef(({ children, filter, ...props }, ref) => (
-      <InputBox.Input
-        mi='x4'
-        flexGrow={1}
-        className='rcx-select__focus'
-        ref={ref}
-        placeholder={placeholder}
-        value={filter}
-        onChange={useMutableCallback((e) => setFilter(e.currentTarget.value))}
-        {...props}
-        rcx-input-box--undecorated
-      />
-    )),
-    []
+  const anchor = useMemo(
+    () =>
+      forwardRef(({ children, filter, ...props }, ref) => (
+        <InputBox.Input
+          mi='x4'
+          flexGrow={1}
+          className='rcx-select__focus'
+          ref={ref}
+          placeholder={placeholder}
+          value={filter}
+          onChange={useMutableCallback((e) => setFilter(e.currentTarget.value))}
+          {...props}
+          rcx-input-box--undecorated
+        />
+      )),
+    [placeholder]
   );
   return (
     <Select

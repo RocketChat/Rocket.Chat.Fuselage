@@ -35,7 +35,7 @@ const OverflowElement = ({ element, context, parser }) => {
   });
 
   const ref = useRef();
-  const onClick = useCallback(() => ref.current.focus() & show(), []);
+  const onClick = useCallback(() => ref.current.focus() & show(), [show]);
 
   const handleSelection = useCallback(
     (...args) => {

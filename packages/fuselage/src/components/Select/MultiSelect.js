@@ -2,7 +2,7 @@ import {
   useMutableCallback,
   useResizeObserver,
 } from '@rocket.chat/fuselage-hooks';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, forwardRef, useMemo } from 'react';
 
 import { AnimatedVisibility, Box, Flex, Position } from '../Box';
 import Chip from '../Chip';
@@ -68,17 +68,29 @@ export const MultiSelect = ({
     [visible, hide, show],
   ] = useCursor(index, filteredOptions, internalChanged);
 
-  useEffect(reset, [filter]);
+  const prevFilterRef = useRef(null);
+
+  if (prevFilterRef.current !== filter) {
+    reset();
+    prevFilterRef.current = filter;
+  }
 
   const ref = useRef();
   const { ref: containerRef, borderBoxSize } = useResizeObserver();
+
+  const handleClick = useMutableCallback(() => {
+    visible === AnimatedVisibility.HIDDEN ? show() : hide();
+  });
+
   return (
     <Box
       is='div'
       rcx-select
       className={[error && 'invalid', disabled && 'disabled']}
       ref={containerRef}
-      onClick={useMutableCallback(() => ref.current.focus() & show())}
+      tabIndex='0'
+      onClick={handleClick}
+      onBlur={hide}
       disabled={disabled}
       {...props}
     >
@@ -99,8 +111,6 @@ export const MultiSelect = ({
                     disabled={disabled}
                     ref={ref}
                     aria-haspopup='listbox'
-                    onClick={show}
-                    onBlur={hide}
                     onKeyUp={handleKeyUp}
                     onKeyDown={handleKeyDown}
                     order={1}
@@ -163,20 +173,21 @@ export const MultiSelect = ({
 
 export const MultiSelectFiltered = ({ options, placeholder, ...props }) => {
   const [filter, setFilter] = useState('');
-  const anchor = useCallback(
-    React.forwardRef(({ children, filter, ...props }, ref) => (
-      <Flex.Item grow={1}>
-        <InputBox.Input
-          ref={ref}
-          placeholder={placeholder}
-          value={filter}
-          onInput={(e) => setFilter(e.currentTarget.value)}
-          {...props}
-          rcx-input-box--undecorated
-        />
-      </Flex.Item>
-    )),
-    []
+  const anchor = useMemo(
+    () =>
+      forwardRef(({ children, filter, ...props }, ref) => (
+        <Flex.Item grow={1}>
+          <InputBox.Input
+            ref={ref}
+            placeholder={placeholder}
+            value={filter}
+            onInput={(e) => setFilter(e.currentTarget.value)}
+            {...props}
+            rcx-input-box--undecorated
+          />
+        </Flex.Item>
+      )),
+    [placeholder]
   );
   return (
     <MultiSelect filter={filter} options={options} {...props} anchor={anchor} />
