@@ -1,4 +1,4 @@
-import { useResizeObserver } from '@rocket.chat/fuselage-hooks';
+import { useBorderBoxSize } from '@rocket.chat/fuselage-hooks';
 import React, { useCallback, useMemo } from 'react';
 
 import { composeClassNames as cx } from '../../helpers/composeClassNames';
@@ -25,11 +25,11 @@ const Banner = ({
   useStyleSheet();
   useStyleSheet(styleSheet);
 
-  const { ref, borderBoxSize } = useResizeObserver();
+  const { ref, inlineSize } = useBorderBoxSize({
+    debounceDelay: 70,
+  });
 
-  const isIconVisible = useMemo(() => borderBoxSize.inlineSize > 375, [
-    borderBoxSize.inlineSize,
-  ]);
+  const isIconVisible = useMemo(() => inlineSize > 375, [inlineSize]);
 
   variant = variants.includes(variant) ? variant : variants[0];
 

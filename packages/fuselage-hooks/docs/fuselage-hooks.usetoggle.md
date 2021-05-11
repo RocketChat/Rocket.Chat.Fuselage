@@ -9,5 +9,5 @@ Hook to create a toggleable boolean state.
 <b>Signature:</b>
 
 ```typescript
-useToggle: <D extends Dispatch<SetStateAction<boolean>> | DispatchWithoutAction>(initialValue?: boolean | (() => boolean)) => [boolean, D]
+useToggle: <D extends DispatchWithoutAction | Dispatch<SetStateAction<boolean>>>(initialValue?: boolean | (() => boolean)) => [boolean, D]
 ```

@@ -23,8 +23,10 @@
 |  [getTargetBoundaries](./fuselage-hooks.gettargetboundaries.md) |  |
 |  [getVariantBoundaries](./fuselage-hooks.getvariantboundaries.md) |  |
 |  [useAutoFocus](./fuselage-hooks.useautofocus.md) | Hook to automatically request focus for an DOM element. |
+|  [useBorderBoxSize](./fuselage-hooks.useborderboxsize.md) |  |
 |  [useBreakpoints](./fuselage-hooks.usebreakpoints.md) | Hook to catch which responsive design' breakpoints are active. |
 |  [useClipboard](./fuselage-hooks.useclipboard.md) | Hook to copy the passed content to the clipboard. |
+|  [useContentBoxSize](./fuselage-hooks.usecontentboxsize.md) |  |
 |  [useDebouncedCallback](./fuselage-hooks.usedebouncedcallback.md) | Hook to memoize a debounced version of a callback. |
 |  [useDebouncedValue](./fuselage-hooks.usedebouncedvalue.md) | Hook to keep a debounced reference of a value. |
 |  [useIsomorphicLayoutEffect](./fuselage-hooks.useisomorphiclayouteffect.md) | Replacement for the <code>useEffect</code> hook that is safely ignored on SSR. |

@@ -4,6 +4,12 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/display-name': 'off',
     'react/no-multi-comp': 'off',
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks: '(useIsomorphicLayoutEffect)',
+      },
+    ],
   },
   env: {
     jest: true,
