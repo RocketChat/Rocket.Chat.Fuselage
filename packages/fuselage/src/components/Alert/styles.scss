@@ -1,0 +1,83 @@
+@use '../../styles/colors.scss';
+@use '../../styles/lengths.scss';
+@use '../../styles/typography.scss';
+
+.rcx-toast-wrapper {
+  position: static;
+}
+
+.rcx-toast {
+  display: flex;
+
+  max-width: lengths.size(340);
+  padding: lengths.padding(8);
+
+  @include typography.use-font-scale(micro);
+
+  &--large {
+    max-width: lengths.size(360);
+    @include on-breakpoint(md) {
+      max-width: lengths.size(580);
+    }
+
+    @include typography.use-font-scale(c1);
+  }
+
+  &--success {
+    color: colors.success(700);
+    background-color: colors.success(200);
+  }
+
+  &--warning {
+    color: colors.warning(800);
+    background-color: colors.warning(200);
+  }
+
+  &--danger {
+    color: colors.danger(500);
+    background-color: colors.danger(100);
+  }
+}
+
+.rcx-toast-position {
+  &--fixed {
+    position: fixed;
+
+    width: lengths.size(full);
+  }
+
+  &--static {
+    position: static;
+  }
+
+  &--center--center {
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+  }
+
+  &--top--left {
+    top: 0;
+    left: 0;
+  }
+
+  &--top--right {
+    top: 0;
+    right: 0;
+  }
+
+  &--bottom--left {
+    bottom: 0;
+    left: 0;
+  }
+
+  &--bottom--right {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.rcx-toast-content {
+  margin-inline-start: lengths.margin(4);
+}

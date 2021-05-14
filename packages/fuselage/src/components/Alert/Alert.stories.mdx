@@ -1,0 +1,49 @@
+import { Meta, Canvas, ArgsTable, Story } from '@storybook/addon-docs/blocks';
+
+import { Alert } from '../..';
+
+<Meta title='Misc/Alert' parameters={{ jest: ['Alert/spec'] }} />
+
+# Alert
+
+The `Alert` component is used to dispatch notifications.
+
+<Canvas>
+  <Story name='Default'>
+    <>
+      <Alert>Registered ID <strong>5f3eecd19eb91400017168bb</strong></Alert>
+      <Alert type='danger'>Not registered</Alert>
+      <Alert type='warning'>Awaiting Email Confirmation</Alert>
+    </>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Alert} />
+
+## Size
+
+If we need a bigger alert we can use `size` prop.
+
+<Canvas>
+  <Story name='Large'>
+    <>
+      <Alert size='large'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Alert>
+      <Alert size='large' type='danger'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Alert>
+      <Alert size='large' type='warning'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Alert>
+    </>
+  </Story>
+</Canvas>
+
+## Position
+
+We can position the alert component using `verticalPosition` and `horizontalPosition` props.
+
+<Canvas>
+  <Story name='Position'>
+    <div style={{ height: '20rem', transform: 'translateZ(0)', overflow: 'auto' }}>
+      <Alert size='large' verticalPosition='top' horizontalPosition='left' type='success'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Alert>
+      <Alert verticalPosition='center' horizontalPosition='center' type='warning'>Awaiting Email Confirmation</Alert>
+      <Alert verticalPosition='bottom' horizontalPosition='right' type='danger'>This is a danger alert</Alert>
+    </div>
+  </Story>
+</Canvas>
