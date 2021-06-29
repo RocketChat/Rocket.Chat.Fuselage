@@ -91,6 +91,7 @@ module.exports = (env, { mode = 'production' }) => ({
     'react-dom',
     '@rocket.chat/icons',
     '@rocket.chat/fuselage-hooks',
+    'rc-trigger',
   ],
   plugins: [
     new CopyPlugin({
