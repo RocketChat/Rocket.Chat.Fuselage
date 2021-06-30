@@ -14,6 +14,7 @@ import LinearScaleElement from './elements/LinearScaleElement';
 import { MultiStaticSelectElement } from './elements/MultiStaticSelectElement';
 import OverflowElement from './elements/OverflowElement';
 import PlainInputElement from './elements/PlainInputElement';
+import { PreviewElement } from './elements/PreviewElement';
 import { StaticSelectElement } from './elements/StaticSelectElement';
 
 export function plainText(element) {
@@ -169,4 +170,8 @@ export function linearScale(element, context, index) {
       parser={this}
     />
   );
+}
+
+export function preview(element, context, index) {
+  return <PreviewElement key={index} element={element} />;
 }

@@ -14,6 +14,7 @@ import {
   plainText,
   section,
   staticSelect,
+  preview,
 } from '../renderers';
 import MessageSurface from './MessageSurface';
 
@@ -31,6 +32,7 @@ MessageParser.prototype.datePicker = datePicker;
 MessageParser.prototype.staticSelect = staticSelect;
 MessageParser.prototype.multiStaticSelect = multiStaticSelect;
 MessageParser.prototype.overflow = overflow;
+MessageParser.prototype.preview = preview;
 
 export const messageParser = new MessageParser();
 

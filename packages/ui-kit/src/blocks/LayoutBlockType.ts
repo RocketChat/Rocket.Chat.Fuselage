@@ -6,4 +6,5 @@ export enum LayoutBlockType {
   CONTEXT = 'context',
   INPUT = 'input',
   CONDITIONAL = 'conditional',
+  PREVIEW = 'preview',
 }

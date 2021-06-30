@@ -35,7 +35,15 @@ module.exports = (env, { mode = 'production' }) => ({
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
   },
   externals: ['react', 'react-dom', /^@rocket.chat\//],
   plugins: [

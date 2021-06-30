@@ -7,7 +7,8 @@ type AllowedLayoutsMessage =
   | LayoutBlockType.CONTEXT
   | LayoutBlockType.DIVIDER
   | LayoutBlockType.IMAGE
-  | LayoutBlockType.SECTION;
+  | LayoutBlockType.SECTION
+  | LayoutBlockType.PREVIEW;
 
 export abstract class UiKitParserMessage<
   OutputElement
@@ -19,6 +20,7 @@ export abstract class UiKitParserMessage<
       LayoutBlockType.DIVIDER,
       LayoutBlockType.IMAGE,
       LayoutBlockType.SECTION,
+      LayoutBlockType.PREVIEW,
     ]);
   }
 }

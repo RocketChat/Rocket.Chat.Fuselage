@@ -1,0 +1,136 @@
+@use '../../styles/lengths.scss';
+@use '../../styles/functions.scss';
+@use '../../styles/colors.scss';
+@use '../../styles/typography.scss';
+@use '../../styles/mixins/size.scss';
+@use '../../styles/primitives/traits/rich-text.scss';
+
+$message-generic-preview-border-color: theme(
+  'message-generic-preview-border-color',
+  colors.neutral(200)
+);
+
+$message-generic-preview-title-color: theme(
+  'message-generic-preview-title-color',
+  colors.foreground(default)
+);
+
+$message-generic-preview-description-color: theme(
+  'message-generic-preview-description-color',
+  colors.foreground(info)
+);
+
+$message-generic-preview-content-background-color: theme(
+  'message-generic-preview-content-background-color',
+  colors.neutral(100)
+);
+$message-generic-preview-content-hover-background-color: theme(
+  'message-generic-preview-content-hover-background-color',
+  colors.neutral(200)
+);
+
+.rcx-message-generic-preview {
+  display: flex;
+  flex-direction: column;
+
+  border: lengths.border-width(2) solid $message-generic-preview-border-color;
+
+  font-size: 0;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+
+    background-color: $message-generic-preview-content-background-color;
+
+    font-size: 0;
+
+    &:hover {
+      background-color: $message-generic-preview-content-hover-background-color;
+    }
+
+    &-wrapper {
+      @include typography.use-with-truncated-text();
+      display: flex;
+      flex-direction: column;
+
+      margin-block: lengths.margin(8);
+      padding-inline: lengths.margin(16);
+    }
+  }
+
+  &__preview {
+    display: inline-block;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: zoom-in;
+    white-space: nowrap;
+    text-indent: 100%;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain;
+    box-shadow: inset 0 0 0 2px rgb(0 0 0 / 5%);
+  }
+
+  &__title {
+    @include typography.use-with-truncated-text();
+    @include typography.use-font-scale(p1);
+    margin-block-end: lengths.margin(4);
+
+    color: $message-generic-preview-title-color;
+    @at-root {
+      a#{&} {
+        &:link {
+          text-decoration: none;
+
+          color: colors.foreground(link);
+        }
+
+        &:visited,
+        &.is-visited {
+          color: colors.foreground(link);
+        }
+
+        &:active,
+        &.is-active {
+          color: colors.foreground(active-link);
+        }
+
+        &:hover,
+        &.is-hovered {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__description {
+    @include typography.use-font-scale(p1);
+    margin-block-end: lengths.margin(4);
+
+    white-space: normal;
+
+    color: $message-generic-preview-description-color;
+
+    &:not(&--clamp) {
+      @include typography.use-with-truncated-text();
+    }
+
+    &--clamp {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  &__thumb {
+    @include size.square(lengths.size(96));
+
+    margin: lengths.margin(-2);
+  }
+}

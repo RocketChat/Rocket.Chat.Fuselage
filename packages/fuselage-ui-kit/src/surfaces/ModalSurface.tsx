@@ -1,10 +1,12 @@
 import { Margins } from '@rocket.chat/fuselage';
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Surface } from './SurfaceContext';
 
-const ModalSurface = ({ children }) => (
-  <Surface type='modal'>
+const value = { type: 'modal' } as const;
+
+const ModalSurface: FC = ({ children }) => (
+  <Surface value={value}>
     <Margins blockEnd='x16'>{children}</Margins>
   </Surface>
 );

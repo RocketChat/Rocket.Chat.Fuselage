@@ -14,7 +14,7 @@ import { Divider } from './Divider';
 import { Metrics } from './Metrics';
 import { Toolbox } from './Toolbox';
 
-const Container: FC = function Container(props) {
+export const MessageContainer: FC = function Container(props) {
   return (
     <div className='rcx-box rcx-box--full rcx-message-container' {...props} />
   );
@@ -38,7 +38,7 @@ export const MessageLeftContainer: FC = function MessageLeftContainer(props) {
   );
 };
 
-const Header: FC = function Header({ children }) {
+export const MessageHeader: FC = function Header({ children }) {
   return (
     <div className='rcx-box rcx-box--full rcx-message-header'>
       <div className='rcx-box rcx-box--full rcx-message-header__wrapper'>
@@ -48,7 +48,7 @@ const Header: FC = function Header({ children }) {
   );
 };
 
-const Body: FC<{
+export const MessageBody: FC<{
   clamp?: 2 | 3 | 4;
   className?: string | string[];
 }> = function Body({ clamp, className, ...props }) {
@@ -90,7 +90,7 @@ export const MessageBlock: FC<{ className?: string }> = function MessageBlock({
 type MessageProps = ComponentProps<typeof Box> & {
   clickable?: true | false;
   sequential?: boolean;
-  className: string;
+  className?: string;
 };
 
 export const Message: ForwardRefExoticComponent<MessageProps> = forwardRef(
@@ -123,7 +123,9 @@ export const Message: ForwardRefExoticComponent<MessageProps> = forwardRef(
   }
 );
 
-const Timestamp: FC<{ children: string }> = function Timestamp(props) {
+export const MessageTimestamp: FC<{ children: string }> = function Timestamp(
+  props
+) {
   return (
     <span
       className='rcx-box rcx-box--full rcx-message-header__time'
@@ -132,7 +134,7 @@ const Timestamp: FC<{ children: string }> = function Timestamp(props) {
   );
 };
 
-const Name: FC<{ children: string }> = function Name(props) {
+export const MessageName: FC<{ children: string }> = function Name(props) {
   return (
     <span
       className='rcx-box rcx-box--full rcx-message-header__name'
@@ -140,7 +142,7 @@ const Name: FC<{ children: string }> = function Name(props) {
     />
   );
 };
-const Username: FC<{ children: string }> = function Name(props) {
+export const MessageUsername: FC<{ children: string }> = function Name(props) {
   return (
     <span
       className='rcx-box rcx-box--full rcx-message-header__username'
@@ -149,7 +151,7 @@ const Username: FC<{ children: string }> = function Name(props) {
   );
 };
 
-const Role: FC<{ children: string }> = function Role(props) {
+export const MessageRole: FC<{ children: string }> = function Role(props) {
   return (
     <Tag
       onClick={undefined}
@@ -161,7 +163,7 @@ const Role: FC<{ children: string }> = function Role(props) {
   );
 };
 
-const Roles: FC = function Role(props) {
+export const MessageRoles: FC = function Role(props) {
   return (
     <div
       className='rcx-box rcx-box--full rcx-message-header__roles'
@@ -173,16 +175,16 @@ const Roles: FC = function Role(props) {
 Object.assign(Message, {
   Metrics,
   Toolbox,
-  Container,
+  Container: MessageContainer,
   ContainerFixed,
   LeftContainer: MessageLeftContainer,
-  Header,
-  Body,
+  Header: MessageHeader,
+  Body: MessageBody,
   Block: MessageBlock,
-  Timestamp,
-  Name,
-  Username,
-  Roles,
-  Role,
+  Timestamp: MessageTimestamp,
+  Name: MessageName,
+  Username: MessageUsername,
+  Roles: MessageRoles,
+  Role: MessageRole,
   Divider,
 });

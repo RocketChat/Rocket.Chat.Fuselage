@@ -1,22 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
-    "module": "es2015",
-    "target": "es5",
-    "lib": ["es6", "dom"],
+    "rootDir": "./src/",
+    "target": "ES5",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM"],
+    "downlevelIteration": true,
+    "declaration": true,
+    "declarationMap": true,
     "sourceMap": true,
-    "allowJs": false,
-    "jsx": "react",
+    "outDir": "./dist/",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "rootDir": "../",
-    "outDir": "dist",
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "declaration": true
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "jsx": "react"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "./dist/",
+    "./storybook-static/",
+    "./src/**/*.spec.{js,ts,tsx}",
+    "./*.js"
+  ]
 }

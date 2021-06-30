@@ -3,7 +3,10 @@
 const path = require('path');
 
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+const pkg = require('./package.json');
 
 module.exports = (env, { mode = 'production' }) => ({
   entry: {
@@ -106,6 +109,9 @@ module.exports = (env, { mode = 'production' }) => ({
           to: '../dist',
         },
       ],
+    }),
+    new webpack.DefinePlugin({
+      'process.env.VERSION': JSON.stringify(pkg.version),
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
