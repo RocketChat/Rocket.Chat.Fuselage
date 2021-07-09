@@ -1,0 +1,79 @@
+{
+  "name": "@rocket.chat/image-manipulation",
+  "version": "0.26.0",
+  "description": "Image transform functions",
+  "author": {
+    "name": "Rocket.Chat",
+    "url": "https://rocket.chat/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RocketChat/Rocket.Chat.Fuselage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RocketChat/Rocket.Chat.Fuselage/issues"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "scripts": {
+    "build": "run-p .:build:esm .:build:cjs",
+    ".:build:esm": "tsc -p tsconfig.json",
+    "storybook": "start-storybook -p 6006",
+    ".:build:cjs": "tsc -p tsconfig-cjs.json",
+    "lint-staged": "lint-staged",
+    "lint": "run-s .:lint:eslint .:lint:tsc",
+    ".:lint:eslint": "eslint src",
+    ".:lint:tsc": "tsc --noEmit",
+    "lint-fix": "run-s .:lint-fix:eslint",
+    ".:lint-fix:eslint": "eslint --fix src",
+    "build-storybook": "run-s .:build-storybook:jest-results .:build-storybook:build-storybook",
+    ".:build-storybook:build-storybook": "cross-env NODE_ENV=production build-storybook",
+    "update-storybook": "run-s .:update-storybook:build-storybook .:update-storybook:loki-update",
+    ".:update-storybook:build-storybook": "run-s build-storybook",
+    ".:update-storybook:loki-update": "loki update --chromeDockerImage=chinello/alpine-chrome:latest --chromeFlags='--headless --no-sandbox --disable-gpu --disable-features=VizDisplayCompositor' --verboseRenderer --requireReference --reactUri file:./storybook-static",
+    "prettier-format": "prettier 'src/**/*.{ts,tsx,js,jsx}' --write",
+    "loki:test": "loki test --chromeDockerImage=chinello/alpine-chrome:latest --chromeFlags='--headless --no-sandbox --disable-gpu --disable-features=VizDisplayCompositor' --verboseRenderer --requireReference --reactUri file:./storybook-static"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@rocket.chat/eslint-config-alt": "^0.26.0",
+    "@rocket.chat/prettier-config": "^0.26.0",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addons": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "@storybook/source-loader": "^6.2.9",
+    "@storybook/theming": "^6.2.9",
+    "eslint": "^7.26.0",
+    "lint-staged": "^11.0.0",
+    "loki": "^0.28.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "tslib": "^2.2.0"
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.docker",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false,
+        "fitWindow": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.docker",
+        "preset": "iPhone 7"
+      }
+    }
+  }
+}
