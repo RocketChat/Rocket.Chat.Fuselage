@@ -72,4 +72,16 @@ export default {
 export const _OrganizationInfoPage: Story<Args> = (args) => (
   <OrganizationInfoPage {...args} />
 );
+
 _OrganizationInfoPage.storyName = 'OrganizationInfoPage';
+
+export const _CloudOrganizationInfoPage: Story<Args> = (args) => (
+  <OrganizationInfoPage {...args} />
+);
+
+_CloudOrganizationInfoPage.storyName = 'CloudOrganizationInfoPage';
+_CloudOrganizationInfoPage.args = {
+  title: 'Your Workspace is Ready!',
+  description: 'Organization info will help us personalize your workspace',
+  onConfirmText: 'Go to workspace',
+};
