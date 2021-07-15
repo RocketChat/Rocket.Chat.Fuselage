@@ -1,7 +1,6 @@
+import List from '../../../common/List';
 import Block from './Block';
 import Description from './Description';
-import List from './List';
-import ListItem from './ListItem';
 import OptionCard from './OptionCard';
 import Subtitle from './Subtitle';
 import Title from './Title';
@@ -11,6 +10,6 @@ export default Object.assign(OptionCard, {
   Subtitle,
   Description,
   List,
-  ListItem,
+  ListItem: List.Li,
   Block,
 });

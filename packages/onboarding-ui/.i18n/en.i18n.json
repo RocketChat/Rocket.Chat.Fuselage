@@ -6,7 +6,8 @@
         "back": "Back",
         "next": "Next"
       },
-      "requiredField": "This field is required"
+      "requiredField": "This field is required",
+      "termsAndConditions": "I agree with <1>Terms and Conditions</1> and <3>Privacy Policy</3>"
     }
   },
   "page": {
@@ -24,7 +25,19 @@
     },
     "confirmationProcess": {
       "title": "Confirmation in Process"
-    }
+    },
+    "cloudDescription": {
+      "tryGold": "Try our best Gold plan for 14 days for free",
+      "availability": "High availability",
+      "auditing": "Message audit panel / Audit logs",
+      "integrations": "1,000 integrations",
+      "ldap": "LDAP enhanced sync",
+      "omnichannel": "Omnichannel premium",
+      "sla": "SLA: Premium",
+      "push": "Secured push notifications",
+      "goldIncludes": "* Golden plan includes all features from other plans"
+    },
+    "alreadyHaveAccount": "Already have an account? <1>Manage your workspaces.</1>"
   },
   "form": {
     "adminInfoForm": {
@@ -92,8 +105,7 @@
           "oAuth": "OAuth proxy for social network",
           "apps": "Apps Marketplace"
         },
-        "includeUpdates": "Include product and security updates",
-        "agreement": "I agree with <1>Terms and Conditions</1> and <3>Privacy Policy</3>"
+        "includeUpdates": "Include product and security updates"
       },
       "standalone": {
         "title": "Standalone server",
@@ -103,6 +115,32 @@
           "settings": "update preconfigured settings",
           "mobile": "and recompile mobile apps with your certificates"
         }
+      }
+    },
+    "createCloudWorkspace": {
+      "title": "Create Cloud Workspace",
+      "fields": {
+        "orgName": "Organization name",
+        "orgEmail": {
+          "label": "Organization email",
+          "placeholder": "Email",
+          "invalid": "Invalid email"
+        },
+        "workspaceName": {
+          "label": "Workspace name",
+          "tooltip": "How should be a good Workspace name"
+        },
+        "workspaceUrl": {
+          "label": "Workspace URL",
+          "placeholder": "workspaceurl",
+          "tooltip": "URL of your Workspace",
+          "exists": "Workspace already exists"
+        },
+        "serverRegion": {
+          "label": "Server region",
+          "tooltip": "Where is your server located"
+        },
+        "keepMePosted": "Keep me posted about Rocket.Chat updates"
       }
     }
   }

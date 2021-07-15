@@ -1,4 +1,5 @@
 import { Box, Margins } from '@rocket.chat/fuselage';
+import colors from '@rocket.chat/fuselage-tokens/colors.json';
 import type {
   ReactElement,
   ReactNode,
@@ -6,20 +7,24 @@ import type {
   CSSProperties,
 } from 'react';
 
+import { ListComponent } from './List.styles';
+
 const List = ({
   children,
-  listStyle,
+  listStyleType,
+  icon,
   spacing = 'x6',
-  color = 'default',
+  color = colors.n900,
 }: {
   children: ReactNode;
   spacing?: ComponentProps<typeof Margins>['block'];
-  listStyle?: CSSProperties['listStyle'];
+  listStyleType?: CSSProperties['listStyleType'];
   color?: ComponentProps<typeof Box>['color'];
+  icon?: string;
 }): ReactElement => (
-  <Box is='ul' style={{ listStyle: listStyle || 'none' }} color={color}>
+  <ListComponent icon={icon} listStyleType={listStyleType} color={color}>
     <Margins block={spacing}>{children}</Margins>
-  </Box>
+  </ListComponent>
 );
 
 export default List;

@@ -70,7 +70,7 @@ const RegisterOptionCard = (): ReactElement => {
         <Box color='default' fontScale='c1'>
           <CheckBox mie='x8' disabled={!selected} {...register('agreement')} />{' '}
           <Box is='label' htmlFor='agreement' withRichContent>
-            <Trans i18nKey='form.serverRegistrationForm.register.agreement'>
+            <Trans i18nKey='component.form.termsAndConditions'>
               I agree with
               <a
                 href='https://rocket.chat/terms'

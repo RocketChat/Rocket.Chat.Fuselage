@@ -1,4 +1,5 @@
 import { RadioButton } from '@rocket.chat/fuselage';
+import colors from '@rocket.chat/fuselage-tokens/colors.json';
 import type { ReactElement } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +33,7 @@ const RegisterOptionCard = (): ReactElement => {
         <OptionCard.Description>
           {t('form.serverRegistrationForm.standalone.description')}
         </OptionCard.Description>
-        <OptionCard.List listStyle='inside' spacing='x2' color='info'>
+        <OptionCard.List listStyleType='disc' spacing='x2' color={colors.n700}>
           <OptionCard.ListItem>
             {t('form.serverRegistrationForm.standalone.actionList.accounts')}
           </OptionCard.ListItem>
