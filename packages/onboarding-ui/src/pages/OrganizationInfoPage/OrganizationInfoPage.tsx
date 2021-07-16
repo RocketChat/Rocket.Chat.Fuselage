@@ -4,6 +4,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import BackgroundLayer from '../../common/BackgroundLayer';
 import FormPageLayout from '../../common/FormPageLayout';
 import OrganizationInfoForm from '../../forms/OrganizationInfoForm';
+import type { OrganizationInfoPayload } from '../../forms/OrganizationInfoForm/OrganizationInfoForm';
 
 type OrganizationInfoPageProps = {
   currentStep: number;
@@ -12,13 +13,8 @@ type OrganizationInfoPageProps = {
   organizationIndustryOptions: (readonly [string, string])[];
   organizationSizeOptions: (readonly [string, string])[];
   countryOptions: (readonly [string, string])[];
-  onSubmit: SubmitHandler<{
-    organizationName: string;
-    organizationType: string;
-    organizationIndustry: string;
-    organizationSize: string;
-    country: string;
-  }>;
+  initialValues?: OrganizationInfoPayload;
+  onSubmit: SubmitHandler<OrganizationInfoPayload>;
   onBackButtonClick: () => void;
 };
 

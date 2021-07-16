@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 import Form from '../../common/Form';
 
-type AdminInfoFormInputs = {
+export type AdminInfoPayload = {
   fullname: string;
   username: string;
   companyEmail: string;
@@ -23,17 +23,19 @@ type AdminInfoFormInputs = {
 type AdminInfoFormProps = {
   currentStep: number;
   stepCount: number;
+  passwordRulesHint: string;
+  initialValues?: Omit<AdminInfoPayload, 'password'>;
   validateUsername: Validate<string>;
   validateEmail: Validate<string>;
-  passwordRulesHint: string;
   validatePassword: Validate<string>;
-  onSubmit: SubmitHandler<AdminInfoFormInputs>;
+  onSubmit: SubmitHandler<AdminInfoPayload>;
 };
 
 const AdminInfoForm = ({
   currentStep,
   stepCount,
   passwordRulesHint,
+  initialValues,
   validateUsername,
   validateEmail,
   validatePassword,
@@ -44,8 +46,13 @@ const AdminInfoForm = ({
   const {
     register,
     handleSubmit,
-    formState: { isDirty, isValidating, isSubmitting, errors },
-  } = useForm<AdminInfoFormInputs>();
+    formState: { isValidating, isSubmitting, errors },
+  } = useForm<AdminInfoPayload>({
+    defaultValues: {
+      ...initialValues,
+      password: '',
+    },
+  });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -132,11 +139,7 @@ const AdminInfoForm = ({
       </Form.Container>
       <Form.Footer>
         <ButtonGroup flexGrow={1}>
-          <Button
-            type='submit'
-            primary
-            disabled={!isDirty || isValidating || isSubmitting}
-          >
+          <Button type='submit' primary disabled={isValidating || isSubmitting}>
             {t('component.form.action.next')}
           </Button>
         </ButtonGroup>

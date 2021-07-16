@@ -13,6 +13,7 @@ const Form: FC<{ onSubmit: () => void }> = ({
     padding={40}
     width='full'
     maxWidth={576}
+    borderRadius={4}
     onSubmit={onSubmit}
   >
     {children}

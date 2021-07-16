@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 import Form from '../../common/Form';
 
-type OrganizationInfoFormInputs = {
+export type OrganizationInfoPayload = {
   organizationName: string;
   organizationType: string;
   organizationIndustry: string;
@@ -28,7 +28,8 @@ type OrganizationInfoFormProps = {
   organizationIndustryOptions: SelectOptions;
   organizationSizeOptions: SelectOptions;
   countryOptions: SelectOptions;
-  onSubmit: SubmitHandler<OrganizationInfoFormInputs>;
+  initialValues?: OrganizationInfoPayload;
+  onSubmit: SubmitHandler<OrganizationInfoPayload>;
   onBackButtonClick: () => void;
 };
 
@@ -39,6 +40,7 @@ const OrganizationInfoForm = ({
   organizationIndustryOptions,
   organizationSizeOptions,
   countryOptions,
+  initialValues,
   onSubmit,
   onBackButtonClick,
 }: OrganizationInfoFormProps): ReactElement => {
@@ -48,8 +50,10 @@ const OrganizationInfoForm = ({
     register,
     control,
     handleSubmit,
-    formState: { isDirty, isValidating, isSubmitting, errors },
-  } = useForm<OrganizationInfoFormInputs>();
+    formState: { isValidating, isSubmitting, errors },
+  } = useForm<OrganizationInfoPayload>({
+    defaultValues: initialValues,
+  });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -161,11 +165,7 @@ const OrganizationInfoForm = ({
           <Button onClick={onBackButtonClick}>
             {t('component.form.action.back')}
           </Button>
-          <Button
-            type='submit'
-            primary
-            disabled={!isDirty || isValidating || isSubmitting}
-          >
+          <Button type='submit' primary disabled={isValidating || isSubmitting}>
             {t('component.form.action.next')}
           </Button>
         </ButtonGroup>

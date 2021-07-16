@@ -1,30 +1,26 @@
 import { ButtonGroup, Button, TextInput, Field } from '@rocket.chat/fuselage';
 import type { ReactElement } from 'react';
-import { useForm, SubmitHandler, UseFormProps } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import Form from '../../common/Form';
 
-type CloudAccountEmailFormInputs = {
+export type CloudAccountEmailPayload = {
   email: string;
 };
 
 type CloudAccountEmailFormProps = {
   currentStep: number;
   stepCount: number;
+  initialValues?: CloudAccountEmailPayload;
   onBackButtonClick: () => void;
-  onSubmit: SubmitHandler<CloudAccountEmailFormInputs>;
-};
-
-const options: UseFormProps<CloudAccountEmailFormInputs> = {
-  defaultValues: {
-    email: '',
-  },
+  onSubmit: SubmitHandler<CloudAccountEmailPayload>;
 };
 
 const CloudAccountEmailForm = ({
   currentStep,
   stepCount,
+  initialValues,
   onBackButtonClick,
   onSubmit,
 }: CloudAccountEmailFormProps): ReactElement => {
@@ -34,7 +30,12 @@ const CloudAccountEmailForm = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CloudAccountEmailFormInputs>(options);
+  } = useForm<CloudAccountEmailPayload>({
+    defaultValues: {
+      email: '',
+      ...initialValues,
+    },
+  });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -53,7 +54,7 @@ const CloudAccountEmailForm = ({
             />
           </Field.Row>
           {errors.email && (
-            <Field.Error>{t('global.fieldRequired')}</Field.Error>
+            <Field.Error>{t('component.form.requiredField')}</Field.Error>
           )}
         </Field>
       </Form.Container>

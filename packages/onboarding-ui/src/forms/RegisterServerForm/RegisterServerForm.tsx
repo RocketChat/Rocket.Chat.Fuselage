@@ -7,7 +7,7 @@ import Form from '../../common/Form';
 import RegisterOptionCard from './RegisterOptionCard';
 import StandaloneOptionCard from './StandaloneOptionCard';
 
-type RegisterServerFormInputs = {
+export type RegisterServerPayload = {
   registerType: 'registered' | 'standalone';
   agreement: boolean;
   updates: boolean;
@@ -16,23 +16,26 @@ type RegisterServerFormInputs = {
 type RegisterServerFormProps = {
   currentStep: number;
   stepCount: number;
-  onSubmit: SubmitHandler<RegisterServerFormInputs>;
+  initialValues?: RegisterServerPayload;
+  onSubmit: SubmitHandler<RegisterServerPayload>;
   onBackButtonClick: () => void;
 };
 
 const RegisterServerForm = ({
   currentStep,
   stepCount,
+  initialValues,
   onSubmit,
   onBackButtonClick,
 }: RegisterServerFormProps): ReactElement => {
   const { t } = useTranslation();
 
-  const methods = useForm<RegisterServerFormInputs>({
+  const methods = useForm<RegisterServerPayload>({
     defaultValues: {
       registerType: 'registered',
       agreement: false,
       updates: false,
+      ...initialValues,
     },
   });
   const { handleSubmit } = methods;
