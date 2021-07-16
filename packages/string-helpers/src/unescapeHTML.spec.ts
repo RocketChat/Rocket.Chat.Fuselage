@@ -25,6 +25,7 @@ describe('unescapeHTML', () => {
       unescapeHTML('what is the &yen; to &pound; to &euro; conversion process?')
     ).toBe('what is the ¥ to £ to € conversion process?');
     expect(unescapeHTML('&reg; trademark')).toBe('® trademark');
+    expect(unescapeHTML('&trade; unregistered trademark')).toBe('™ unregistered trademark');
     expect(unescapeHTML('&copy; 1992. License available for 50 &cent;')).toBe(
       '© 1992. License available for 50 ¢'
     );
