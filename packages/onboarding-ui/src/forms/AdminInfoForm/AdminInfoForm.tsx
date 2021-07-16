@@ -6,6 +6,8 @@ import {
   Button,
   PasswordInput,
   TextInput,
+  Box,
+  CheckBox,
 } from '@rocket.chat/fuselage';
 import type { ReactElement } from 'react';
 import { useForm, SubmitHandler, Validate } from 'react-hook-form';
@@ -18,6 +20,7 @@ type AdminInfoFormInputs = {
   username: string;
   companyEmail: string;
   password: string;
+  keepPosted: boolean;
 };
 
 type AdminInfoFormProps = {
@@ -27,6 +30,7 @@ type AdminInfoFormProps = {
   validateEmail: Validate<string>;
   passwordRulesHint: string;
   validatePassword: Validate<string>;
+  keepPosted?: boolean;
   onSubmit: SubmitHandler<AdminInfoFormInputs>;
 };
 
@@ -37,6 +41,7 @@ const AdminInfoForm = ({
   validateUsername,
   validateEmail,
   validatePassword,
+  keepPosted = false,
   onSubmit,
 }: AdminInfoFormProps): ReactElement => {
   const { t } = useTranslation();
@@ -128,6 +133,14 @@ const AdminInfoForm = ({
               <Field.Error>{t('component.form.requiredField')}</Field.Error>
             )}
           </Field>
+          {keepPosted && (
+            <Box mbe='x8' display='block' color='info' fontScale='c1'>
+              <CheckBox id='keepPosted' mie='x8' {...register('keepPosted')} />
+              <label htmlFor='keepPosted'>
+                {t('form.adminInfoForm.fields.keepPosted.label')}
+              </label>
+            </Box>
+          )}
         </FieldGroup>
       </Form.Container>
       <Form.Footer>

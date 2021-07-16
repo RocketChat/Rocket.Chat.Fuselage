@@ -73,6 +73,7 @@ export const Title = styled('div')`
 
 export const Subtitle = styled('div')`
   font-size: ${String(40 / 16)}rem;
+  font-family: ${sans};
   line-height: ${String(42 / 16)}rem;
   text-align: center;
 
@@ -84,6 +85,7 @@ export const Subtitle = styled('div')`
 
 export const Description = styled('div')`
   display: none;
+  font-family: ${sans};
 
   @media (min-width: 1440px) {
     display: unset;

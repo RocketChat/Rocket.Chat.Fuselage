@@ -53,6 +53,9 @@
         "password": {
           "label": "Password",
           "placeholder": "Create password"
+        },
+        "keepPosted": {
+          "label": "Keep me posted about Rocket.Chat updates"
         }
       }
     },

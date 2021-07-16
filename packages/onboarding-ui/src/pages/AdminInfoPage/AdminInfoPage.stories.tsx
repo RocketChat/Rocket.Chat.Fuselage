@@ -27,4 +27,16 @@ export default {
 export const _AdminInfoPage: Story<Args> = (args) => (
   <AdminInfoPage {...args} />
 );
+
+export const _CloudAdminInfoPage: Story<Args> = (args) => (
+  <AdminInfoPage {...args} />
+);
+
 _AdminInfoPage.storyName = 'AdminInfoPage';
+_CloudAdminInfoPage.storyName = 'CloudAdminInfoPage';
+
+_CloudAdminInfoPage.args = {
+  title: 'Your Workspace is Ready!',
+  description: 'Time to create your first admin user',
+  keepPosted: true,
+};

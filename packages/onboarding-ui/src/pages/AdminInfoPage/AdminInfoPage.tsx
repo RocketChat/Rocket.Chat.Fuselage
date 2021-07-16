@@ -6,11 +6,14 @@ import FormPageLayout from '../../common/FormPageLayout';
 import AdminInfoForm from '../../forms/AdminInfoForm';
 
 type AdminInfoPageProps = {
+  title?: string;
+  description?: string;
   currentStep: number;
   stepCount: number;
   validateUsername: Validate<string>;
   validateEmail: Validate<string>;
   passwordRulesHint: string;
+  keepPosted?: boolean;
   validatePassword: Validate<string>;
   onSubmit: SubmitHandler<{
     fullname: string;
@@ -22,7 +25,7 @@ type AdminInfoPageProps = {
 
 const AdminInfoPage = (props: AdminInfoPageProps): ReactElement => (
   <BackgroundLayer>
-    <FormPageLayout>
+    <FormPageLayout title={props.title} description={props.description}>
       <AdminInfoForm {...props} />
     </FormPageLayout>
   </BackgroundLayer>
