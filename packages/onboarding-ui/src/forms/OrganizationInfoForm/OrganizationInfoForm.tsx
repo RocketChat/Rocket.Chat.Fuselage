@@ -6,6 +6,7 @@ import {
   TextInput,
   Select,
   SelectOptions,
+  Box,
 } from '@rocket.chat/fuselage';
 import type { ReactElement } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
@@ -28,8 +29,10 @@ type OrganizationInfoFormProps = {
   organizationIndustryOptions: SelectOptions;
   organizationSizeOptions: SelectOptions;
   countryOptions: SelectOptions;
+  onConfirmText?: string;
   onSubmit: SubmitHandler<OrganizationInfoFormInputs>;
   onBackButtonClick: () => void;
+  onClickSkip?: () => void;
 };
 
 const OrganizationInfoForm = ({
@@ -39,8 +42,10 @@ const OrganizationInfoForm = ({
   organizationIndustryOptions,
   organizationSizeOptions,
   countryOptions,
+  onConfirmText,
   onSubmit,
   onBackButtonClick,
+  onClickSkip,
 }: OrganizationInfoFormProps): ReactElement => {
   const { t } = useTranslation();
 
@@ -166,8 +171,18 @@ const OrganizationInfoForm = ({
             primary
             disabled={!isDirty || isValidating || isSubmitting}
           >
-            {t('component.form.action.next')}
+            {onConfirmText || t('component.form.action.next')}
           </Button>
+
+          {onClickSkip && (
+            <Box flexGrow={1}>
+              <ButtonGroup flexGrow={1} align='end'>
+                <Button nude info onClick={onClickSkip}>
+                  {t('component.form.action.skip')}
+                </Button>
+              </ButtonGroup>
+            </Box>
+          )}
         </ButtonGroup>
       </Form.Footer>
     </Form>

@@ -6,6 +6,8 @@ import FormPageLayout from '../../common/FormPageLayout';
 import OrganizationInfoForm from '../../forms/OrganizationInfoForm';
 
 type OrganizationInfoPageProps = {
+  title?: string;
+  description?: string;
   currentStep: number;
   stepCount: number;
   organizationTypeOptions: (readonly [string, string])[];
@@ -20,13 +22,15 @@ type OrganizationInfoPageProps = {
     country: string;
   }>;
   onBackButtonClick: () => void;
+  onConfirmText?: string;
+  onClickSkip?: () => void;
 };
 
 const OrganizationInfoPage = (
   props: OrganizationInfoPageProps
 ): ReactElement => (
   <BackgroundLayer>
-    <FormPageLayout>
+    <FormPageLayout title={props.title} description={props.description}>
       <OrganizationInfoForm {...props} />
     </FormPageLayout>
   </BackgroundLayer>

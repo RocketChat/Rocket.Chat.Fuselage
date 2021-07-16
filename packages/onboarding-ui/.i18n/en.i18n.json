@@ -4,7 +4,8 @@
       "steps": "Step {{currentStep}} of {{stepCount}}",
       "action": {
         "back": "Back",
-        "next": "Next"
+        "next": "Next",
+        "skip": "Skip this step"
       },
       "requiredField": "This field is required"
     }
