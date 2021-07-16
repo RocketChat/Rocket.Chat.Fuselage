@@ -30,8 +30,13 @@ export const Menu = ({
 
   const ref = useRef();
   const onClick = useCallback(() => {
-    ref.current.focus() & show();
-    ref.current.classList.add('focus-visible');
+    if (ref.current.classList.contains('focus-visible')) {
+      ref.current.classList.remove('focus-visible');
+      hide();
+    } else {
+      ref.current.focus() & show();
+      ref.current.classList.add('focus-visible');
+    }
   }, [show]);
 
   const handleSelection = useCallback(
